@@ -5,7 +5,7 @@ require './helper/validator.php';
 
 
 /*****************Get All User From DB *********************/
-$sqlquery = "select * from student";
+$sqlquery = "select * from users";
 $query    =  mysqli_query($conn,$sqlquery);
 ?>
 
@@ -38,7 +38,7 @@ $query    =  mysqli_query($conn,$sqlquery);
             <td>
                 <a href='delete.php?id=<?php echo $row['id'];?>' class='btn btn-danger m-r-1em'>Delete</a>
                 <a href='edit.php?id=<?php echo $row['id'];?>' class='btn btn-primary m-r-1em'>Edit</a>
-                <a href='addtask.php' class='btn btn-info m-r-1em'>Add Task</a>
+                <a href='./addtask/addtask.php' class='btn btn-info m-r-1em'>Add Task</a>
             </td>
 
         </tr>

@@ -16,7 +16,7 @@ if(count($errors) == 1){
     header("Location: show.php");
 }else{
 
-   $sqlquery = "select * from student where id = $id";
+   $sqlquery = "select * from users where id = $id";
    $query    = mysqli_query($conn,$sqlquery);
    $row      = mysqli_fetch_assoc($query);
 
@@ -47,7 +47,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
  }
 
  /****************************Updat Query From data base*************** */
- $sqlquery = "update student set name='$name' , email = '$email'  where id = $id ";
+ $sqlquery = "update users set name='$name' , email = '$email'  where id = $id ";
      $query = mysqli_query($conn,$sqlquery);
      if($query){
          $message =  'Update done';

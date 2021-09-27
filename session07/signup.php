@@ -11,6 +11,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
         $name     = CleanInputs($_POST['name']);
         $email    = CleanInputs($_POST['email']);
         $password = CleanInputs($_POST['password']);
+        $role     = CleanInputs($_POST['role']);
 
        $errors =array();
        
@@ -39,17 +40,20 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
 /****************iif there is no errors can be query********** */    
     if(count($errors)==0){
     $password = md5($password);
-    $sqlquery = "INSERT INTO `student`(`name`, `email`, `password`) VALUES ('$name','$email','$password')";
+    $sqlquery = "INSERT INTO `users`(`name`, `email`, `password`, `role`) VALUES ('$name','$email','$password',$role)";
     $query = mysqli_query($conn,$sqlquery);
- 
+// var_dump($query);
    if($query){
       echo "<script>alert('Added Successfully!')</script>";
       header("Location:login.php");
     }
     else{
-      echo "<script>alert('Faied To Added !')</script>";
+        echo mysqli_error($conn);
+      // echo "<script>alert('Faied To Added !')</script>";
     }
   }
+
+
 
   }
 ?>
@@ -73,6 +77,17 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
     <label for="exampleInputEmail1">Password</label>
     <input type="password" name="password" value="<?php echo $password ?>" class="form-control" id="exampleInputName" aria-describedby="" placeholder="Enter Password">
     <span class="error"><?php  echo $errors['password']; ?></span>
+  </div>
+
+
+
+  <div class="form-group">
+    <label for="exampleInputEmail1">Role</label>
+    <select class="form-control" name="role">
+      <option  value="1">doctor</option>
+      <option  value="2">admin</option>
+      <option  value="3">paitent</option>
+    </select>
   </div>
 
   <button type="submit" class="btn btn-primary">Submit</button>
